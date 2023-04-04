@@ -17,8 +17,9 @@ public class WordCounterController {
         WordCounterService.countWords(file);
     }
 
-    public static void countWords(String input){
+    public static void countWords(String input) throws IOException {
         log.info("countWords");
         WordCounterService.countWords(input);
     }
+
 }
