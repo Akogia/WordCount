@@ -16,11 +16,11 @@ public class WordCounterService {
 
          String[] splittedString = input.split(" ");
          String[] result = stopWords("stopwords.txt");
-         String[] numberOfWords = eliminateDoubleWordss(splittedString, result);
+         List<String> numberOfWords = eliminateDoubleWordss(splittedString, result);
         // List<String> splittedString = Arrays.stream(input.split(" ")).toList();
         //  List<String> result = Arrays.stream(stopWords("stopwords.txt")).toList();
         // List<String> numberOfWords = eliminateDoubleWords(splittedString, result);
-        log.info("Number of words: {}", numberOfWords.length);
+        log.info("Number of words: {}", numberOfWords.size());
     }
 
     private static String[] stopWords(String filename) throws IOException {
@@ -36,9 +36,9 @@ public class WordCounterService {
         return inputWords;
     }
 
-    private static String[] eliminateDoubleWordss(String[] inputWords, String[] stopWords){
-        List<String> list = new ArrayList<>(Arrays.asList(inputWords)); // convert arr1 to a List
-        list.removeAll(Arrays.asList(stopWords)); // remove all words in arr2 from the List
-        return list.toArray(new String[0]);
+    private static List<String> eliminateDoubleWordss(String[] inputWords, String[] stopWords){
+        List<String> list = new ArrayList<>(Arrays.asList(inputWords));
+        list.removeAll(Arrays.asList(stopWords));
+        return list;
     }
 }
