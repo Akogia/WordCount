@@ -1,3 +1,1 @@
-Mary had
-a little
-lambMit mytext.txt sieht es so aus:
+Mary had a little lamb
