@@ -30,7 +30,7 @@ public class WordCounterService {
         if(index){
             List<String> unknownWords = compareDictionary(inputWords,dictionary);
             log.info("Index (unknown: {}):",unkownWords(unknownWords));
-            inputWords.forEach(System.out::println);
+            inputWords.forEach(log::info);
         }
     }
 
