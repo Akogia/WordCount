@@ -6,7 +6,6 @@ import ch.qos.logback.classic.LoggerContext;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.akogia.common.FileReader;
 import org.akogia.util.MemoryAppender;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,14 +16,13 @@ import org.slf4j.LoggerFactory;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @ExtendWith(MockitoExtension.class)
 class WordCounterServiceTest {
 
-    private static final String LOGGER_NAME = "WordCounterService.class";
+    private static final String LOGGER_NAME = "Printer.class";
     MemoryAppender memoryAppender;
 
     @BeforeEach
@@ -49,7 +47,7 @@ class WordCounterServiceTest {
         // since the stopwords will elimnate the "a", there are 4 words
         assertAll(
             ()-> assertEquals(memoryAppender.countEventsForLogger(LOGGER_NAME),1),
-            ()-> assertEquals(true ,memoryAppender.contains("Number of words: 4", Level.INFO))
+            ()-> assertTrue(memoryAppender.contains("Number of words: 4", Level.INFO))
         );
     }
 
@@ -66,8 +64,8 @@ class WordCounterServiceTest {
         // "a" and "on" is on the stopwords list and therefore not counted
         assertAll(
             ()-> assertEquals(1, memoryAppender.countEventsForLogger(LOGGER_NAME)),
-            ()-> assertEquals(true, memoryAppender.contains("Number of words: 7", Level.INFO)),
-            ()-> assertEquals(true, memoryAppender.contains("unique 6", Level.INFO))
+            ()-> assertTrue(memoryAppender.contains("Number of words: 7", Level.INFO)),
+            ()-> assertTrue(memoryAppender.contains("unique 6", Level.INFO))
 
         );
     }
@@ -83,7 +81,7 @@ class WordCounterServiceTest {
         // Assert
         // Humpty-Dumpty is one word and not unique
         // "a" and "on" is on the stopwords list and therefore not counted
-        assertEquals(true, memoryAppender.contains("average word length: 6.7", Level.INFO));
+        assertTrue(memoryAppender.contains("average word length: 6.7", Level.INFO));
     }
 
     @Test

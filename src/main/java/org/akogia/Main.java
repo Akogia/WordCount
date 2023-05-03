@@ -20,8 +20,7 @@ public class Main {
         WordCounterController.checkArguments(args);;
         WordCounterController.wordCounterControl(args);
         Scanner scanner = new Scanner(System.in);
-        boolean looping = true;
-        while(looping){
+        while(true){
             log.info("Enter text: ");
             String input = scanner.nextLine();
             if(input.isEmpty()){
